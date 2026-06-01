@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RB Engineering & Consulting – IT-Services Hannover</title>
+<meta name="description" content="Zuverlässige IT-Betreuung für kleine und mittelständische Unternehmen in Hannover. Backup, Firewall, Netzwerk, VMware, Monitoring und CCTV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --c-bg: #F5F3EE;
+    --c-bg2: #ECEAE4;
+    --c-surface: #FFFFFF;
+    --c-ink: #1A1815;
+    --c-ink2: #4A4740;
+    --c-ink3: #8A877F;
+    --c-accent: #1D3A5F;
+    --c-accent2: #2A5298;
+    --c-gold: #C4922A;
+    --c-gold-light: #F5E8CC;
+    --c-border: rgba(26,24,21,0.10);
+    --c-border2: rgba(26,24,21,0.06);
+    --font-display: 'DM Serif Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --max: 1100px;
+    --r: 4px;
+    --r2: 10px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--c-bg);
+    color: var(--c-ink);
+    font-size: 16px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(245,243,238,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--c-border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    color: var(--c-accent);
+    letter-spacing: -0.3px;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--c-gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 14px; font-weight: 500; color: var(--c-ink2);
+    text-decoration: none; letter-spacing: 0.2px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--c-accent); }
+  .nav-cta {
+    background: var(--c-accent);
+    color: #fff !important;
+    padding: 8px 18px;
+    border-radius: var(--r);
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--c-accent2) !important; color: #fff !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    padding: 120px 2rem 80px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: center;
+    gap: 4rem;
+    max-width: var(--max);
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--c-gold-light);
+    color: var(--c-gold);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--c-gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 62px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+    color: var(--c-ink);
+    margin-bottom: 1.5rem;
+  }
+  h1 em { color: var(--c-accent); font-style: normal; }
+  .hero-sub {
+    font-size: 18px; color: var(--c-ink2);
+    line-height: 1.6; max-width: 520px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--c-accent);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: var(--r);
+    font-size: 15px; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    letter-spacing: 0.1px;
+  }
+  .btn-primary:hover { background: var(--c-accent2); transform: translateY(-1px); }
+  .btn-secondary {
+    border: 1.5px solid var(--c-border);
+    color: var(--c-ink);
+    padding: 14px 28px;
+    border-radius: var(--r);
+    font-size: 15px; font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--c-accent); color: var(--c-accent); }
+
+  /* hero right — trust card */
+  .hero-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 16px;
+    padding: 2rem;
+    position: relative;
+  }
+  .hero-card::before {
+    content: '';
+    position: absolute; top: -1px; left: 2rem; right: 2rem; height: 3px;
+    background: var(--c-accent);
+    border-radius: 0 0 4px 4px;
+  }
+  .hero-card h3 {
+    font-family: var(--font-display);
+    font-size: 18px; color: var(--c-accent);
+    margin-bottom: 1.25rem;
+  }
+  .trust-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--c-border2);
+  }
+  .trust-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .trust-icon {
+    width: 36px; height: 36px; flex-shrink: 0;
+    background: var(--c-bg);
+    border-radius: var(--r);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .trust-item strong { font-size: 14px; font-weight: 600; display: block; }
+  .trust-item span { font-size: 13px; color: var(--c-ink3); }
+  .hero-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1px; background: var(--c-border);
+    border-radius: var(--r2);
+    overflow: hidden; margin-top: 1.5rem;
+  }
+  .stat {
+    background: var(--c-surface);
+    padding: 1rem 1.25rem;
+  }
+  .stat strong { font-size: 28px; font-family: var(--font-display); color: var(--c-accent); display: block; }
+  .stat span { font-size: 12px; color: var(--c-ink3); }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 100px 2rem; }
+  .container { max-width: var(--max); margin: 0 auto; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--c-gold);
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1; letter-spacing: -1px;
+    margin-bottom: 1.25rem;
+    color: var(--c-ink);
+  }
+  .section-intro {
+    font-size: 17px; color: var(--c-ink2);
+    max-width: 560px; line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── LEISTUNGEN ── */
+  #leistungen { background: var(--c-surface); }
+  .leistungen-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; gap: 2rem; flex-wrap: wrap;
+    margin-bottom: 3.5rem;
+  }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--c-border);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .service-card {
+    background: var(--c-surface);
+    padding: 2rem 1.75rem;
+    transition: background 0.2s;
+    cursor: default;
+    position: relative;
+  }
+  .service-card:hover { background: #fafaf8; }
+  .service-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--c-accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .service-card:hover::after { transform: scaleX(1); }
+  .service-icon {
+    width: 44px; height: 44px;
+    background: var(--c-bg);
+    border-radius: var(--r);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem;
+    font-size: 20px;
+  }
+  .service-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .service-card p { font-size: 14px; color: var(--c-ink3); line-height: 1.6; }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+  .tag {
+    font-size: 11px; font-weight: 500;
+    background: var(--c-bg);
+    color: var(--c-ink2);
+    padding: 3px 9px; border-radius: 100px;
+    letter-spacing: 0.3px;
+  }
+
+  /* ── BRANCHEN ── */
+  #branchen { background: var(--c-bg); }
+  .branchen-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+  .branche-card {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: all 0.25s;
+  }
+  .branche-card:hover {
+    border-color: var(--c-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(29,58,95,0.08);
+  }
+  .branche-emoji { font-size: 28px; margin-bottom: 12px; display: block; }
+  .branche-card h3 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+  .branche-card p { font-size: 13px; color: var(--c-ink3); line-height: 1.6; }
+  .branche-needs {
+    margin-top: 1rem;
+    font-size: 12px; color: var(--c-accent);
+    font-weight: 500;
+  }
+
+  /* ── WARUM WIR ── */
+  #warum { background: var(--c-accent); color: #fff; }
+  #warum h2 { color: #fff; }
+  #warum .section-label { color: rgba(255,255,255,0.5); }
+  #warum .section-intro { color: rgba(255,255,255,0.7); }
+  .warum-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 4rem;
+    align-items: start;
+  }
+  .warum-features { display: flex; flex-direction: column; gap: 1.5rem; }
+  .warum-item { display: flex; gap: 1.25rem; }
+  .warum-num {
+    font-family: var(--font-display);
+    font-size: 36px;
+    color: rgba(255,255,255,0.2);
+    line-height: 1;
+    min-width: 42px;
+  }
+  .warum-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .warum-item p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.6; }
+  .warum-right {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .warum-right h3 {
+    font-family: var(--font-display);
+    font-size: 24px;
+    margin-bottom: 1.5rem;
+  }
+  .check-item {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    font-size: 14px;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-dot {
+    width: 20px; height: 20px;
+    background: var(--c-gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px; color: #fff;
+  }
+
+  /* ── KONTAKT ── */
+  #kontakt { background: var(--c-surface); }
+  .kontakt-layout {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3.5rem;
+  }
+  .kontakt-info h3 {
+    font-family: var(--font-display);
+    font-size: 24px; margin-bottom: 1rem;
+  }
+  .kontakt-info p { color: var(--c-ink2); font-size: 15px; margin-bottom: 2rem; font-weight: 300; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--c-border2);
+    font-size: 15px;
+  }
+  .contact-detail:last-child { border-bottom: none; }
+  .cd-icon {
+    width: 40px; height: 40px;
+    background: var(--c-bg);
+    border-radius: var(--r);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .cd-label { font-size: 12px; color: var(--c-ink3); }
+  .cd-value { font-weight: 500; font-size: 15px; }
+  .cd-value a { color: var(--c-accent); text-decoration: none; }
+
+  /* form */
+  .contact-form {
+    background: var(--c-bg);
+    border-radius: 16px;
+    padding: 2rem;
+  }
+  .contact-form h3 {
+    font-family: var(--font-display);
+    font-size: 20px; margin-bottom: 1.5rem;
+    color: var(--c-accent);
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
+  .form-group label { font-size: 12px; font-weight: 600; color: var(--c-ink2); letter-spacing: 0.3px; }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    background: var(--c-surface);
+    border: 1px solid var(--c-border);
+    border-radius: var(--r);
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 14px; color: var(--c-ink);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--c-accent); }
+  .form-group textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    width: 100%;
+    background: var(--c-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--r);
+    padding: 13px;
+    font-size: 15px; font-weight: 600;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--c-accent2); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--c-ink);
+    color: rgba(255,255,255,0.5);
+    padding: 2.5rem 2rem;
+    text-align: center;
+    font-size: 13px;
+  }
+  footer strong { color: rgba(255,255,255,0.9); }
+  .footer-inner {
+    max-width: var(--max); margin: 0 auto;
+    display: flex; justify-content: space-between;
+    align-items: center; flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    width: 48px; height: 3px;
+    background: var(--c-gold);
+    border-radius: 2px;
+    margin: 1.25rem 0 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-card { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .warum-grid { grid-template-columns: 1fr; }
+    .kontakt-layout { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    h1 { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">RB<span>.</span>Engineering</a>
+  <ul class="nav-links">
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#branchen">Branchen</a></li>
+    <li><a href="#warum">Über uns</a></li>
+    <li><a href="#kontakt" class="nav-cta">Erstgespräch →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section style="padding:0">
+<div id="hero">
+  <div>
+    <div class="hero-eyebrow">IT-Services · Hannover & Region</div>
+    <h1>Ihre IT läuft.<br><em>Zuverlässig.</em><br>Täglich.</h1>
+    <p class="hero-sub">
+      Wir betreuen die IT-Infrastruktur kleiner und mittelständischer Unternehmen in Hannover —
+      von der Datensicherung bis zur Firewall-Konfiguration. Persönlich, kompetent, vor Ort.
+    </p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">Kostenloses Erstgespräch</a>
+      <a href="#leistungen" class="btn-secondary">Leistungen ansehen</a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <h3>Warum RB Engineering?</h3>
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div>
+        <strong>DSGVO-konform</strong>
+        <span>Datenschutz nach deutschem Recht</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📍</div>
+      <div>
+        <strong>Lokal in Hannover</strong>
+        <span>Schnelle Reaktionszeit, persönlicher Kontakt</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🔧</div>
+      <div>
+        <strong>Langjährige Erfahrung</strong>
+        <span>VMware, Veeam, Cisco, Sophos & mehr</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">📞</div>
+      <div>
+        <strong>Kein langer Vertrag nötig</strong>
+        <span>Flexibel — Projekt oder laufende Betreuung</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <strong>8+</strong>
+        <span>Jahre Erfahrung</span>
+      </div>
+      <div class="stat">
+        <strong>60+</strong>
+        <span>Systeme betreut</span>
+      </div>
+      <div class="stat">
+        <strong>24h</strong>
+        <span>Reaktionszeit</span>
+      </div>
+      <div class="stat">
+        <strong>100%</strong>
+        <span>Persönlich vor Ort</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+<div class="container">
+  <div class="leistungen-header fade-up">
+    <div>
+      <p class="section-label">Leistungen</p>
+      <h2>Was wir für Sie tun</h2>
+      <div class="divider"></div>
+    </div>
+    <p class="section-intro" style="margin-bottom:0">
+      Maßgeschneiderte IT-Lösungen für Unternehmen, bei denen Verfügbarkeit und Datenschutz keine Kompromisse erlauben.
+    </p>
+  </div>
+  <div class="services-grid fade-up">
+    <div class="service-card">
+      <div class="service-icon">💾</div>
+      <h3>Backup & Datensicherung</h3>
+      <p>Professionelle Backup-Konzepte mit Veeam Backup & Replication. Automatisiert, getestet, DSGVO-konform.</p>
+      <div class="service-tags">
+        <span class="tag">Veeam</span>
+        <span class="tag">Recovery</span>
+        <span class="tag">DSGVO</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🖥️</div>
+      <h3>VMware & Virtualisierung</h3>
+      <p>Setup, Verwaltung und Optimierung von VMware vSphere-Umgebungen. HA-Cluster, DRS und Snapshots.</p>
+      <div class="service-tags">
+        <span class="tag">vSphere</span>
+        <span class="tag">vCenter</span>
+        <span class="tag">HA Cluster</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔥</div>
+      <h3>Firewall & IT-Sicherheit</h3>
+      <p>Konfiguration und Wartung von Sophos-Firewalls. Schutz Ihrer Netzwerke vor unautorisierten Zugriffen.</p>
+      <div class="service-tags">
+        <span class="tag">Sophos</span>
+        <span class="tag">VPN</span>
+        <span class="tag">Sicherheitsrichtlinien</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Netzwerk & VLAN</h3>
+      <p>Strukturierte Netzwerksegmentierung mit Cisco-Switches. Sicher, skalierbar und gut dokumentiert.</p>
+      <div class="service-tags">
+        <span class="tag">Cisco</span>
+        <span class="tag">VLAN</span>
+        <span class="tag">Switching</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Monitoring & Überwachung</h3>
+      <p>Proaktives Monitoring Ihrer IT-Infrastruktur mit PRTG, SolarWinds oder Zabbix. Probleme erkennen, bevor sie entstehen.</p>
+      <div class="service-tags">
+        <span class="tag">PRTG</span>
+        <span class="tag">Zabbix</span>
+        <span class="tag">Alerting</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📷</div>
+      <h3>CCTV & IP-Kamera-Systeme</h3>
+      <p>Installation und Konfiguration von IP-Kamerasystemen mit Milestone XProtect. Für Büros, Praxen und Lager.</p>
+      <div class="service-tags">
+        <span class="tag">Milestone XProtect</span>
+        <span class="tag">IP-Kamera</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- BRANCHEN -->
+<section id="branchen">
+<div class="container">
+  <div class="fade-up">
+    <p class="section-label">Branchen</p>
+    <h2>Für wen wir arbeiten</h2>
+    <div class="divider"></div>
+    <p class="section-intro" style="margin-top:1.25rem">
+      Besonders geeignet für Unternehmen ohne eigene IT-Abteilung — 10 bis 80 Mitarbeiter — in sensiblen Bereichen.
+    </p>
+  </div>
+  <div class="branchen-grid fade-up">
+    <div class="branche-card">
+      <span class="branche-emoji">🦷</span>
+      <h3>Arztpraxen & Zahnarztpraxen</h3>
+      <p>Patientendaten erfordern höchste Sicherheit. Wir sorgen für DSGVO-konforme IT, die rund um die Uhr läuft.</p>
+      <p class="branche-needs">→ Backup · Firewall · Netzwerk</p>
+    </div>
+    <div class="branche-card">
+      <span class="branche-emoji">🏥</span>
+      <h3>Pflegedienste</h3>
+      <p>24-Stunden-Betrieb braucht stabile IT. Wir betreuen Ihre Systeme, damit Sie sich auf die Pflege konzentrieren können.</p>
+      <p class="branche-needs">→ Server · CCTV · IT-Support</p>
+    </div>
+    <div class="branche-card">
+      <span class="branche-emoji">🏦</span>
+      <h3>Steuerberater & Kanzleien</h3>
+      <p>Finanzdaten und Mandantenakten erfordern maximalen Schutz. Ein Datenverlust kann existenzbedrohend sein.</p>
+      <p class="branche-needs">→ Veeam Backup · Sophos · Windows Server</p>
+    </div>
+    <div class="branche-card">
+      <span class="branche-emoji">🏠</span>
+      <h3>Immobilien & Verwaltung</h3>
+      <p>Objekt- und Kundendaten müssen sicher und jederzeit verfügbar sein. Wir richten Ihre IT professionell ein.</p>
+      <p class="branche-needs">→ Cloud Backup · Netzwerk · Firewall</p>
+    </div>
+    <div class="branche-card">
+      <span class="branche-emoji">🎨</span>
+      <h3>Agenturen & Kreativbüros</h3>
+      <p>Große Projektdateien, schnelle Netzwerke, sicheres Backup — damit kreative Arbeit nicht durch IT-Probleme gestoppt wird.</p>
+      <p class="branche-needs">→ NAS · Backup · Netzwerk</p>
+    </div>
+    <div class="branche-card">
+      <span class="branche-emoji">🚛</span>
+      <h3>Logistik & Handwerk</h3>
+      <p>Zuverlässige Server, stabile Netzwerke und CCTV für Ihr Lager oder Büro — wir kümmern uns um alles.</p>
+      <p class="branche-needs">→ Server · CCTV · VLAN</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- WARUM WIR -->
+<section id="warum">
+<div class="container">
+  <div class="fade-up">
+    <p class="section-label">Über uns</p>
+    <h2>Persönlich.<br>Kompetent.<br>Hannover.</h2>
+    <div class="divider" style="background:rgba(255,255,255,0.3)"></div>
+  </div>
+  <div class="warum-grid fade-up">
+    <div class="warum-features">
+      <div class="warum-item">
+        <div class="warum-num">01</div>
+        <div>
+          <h4>Kein anonymes Callcenter</h4>
+          <p>Sie erreichen immer direkt einen erfahrenen Techniker — nicht eine Warteschleife. Ihr Ansprechpartner kennt Ihre Infrastruktur.</p>
+        </div>
+      </div>
+      <div class="warum-item">
+        <div class="warum-num">02</div>
+        <div>
+          <h4>Lokal in Hannover</h4>
+          <p>Schnelle Vor-Ort-Termine in Hannover und der Region. Keine langen Wartezeiten bei kritischen Problemen.</p>
+        </div>
+      </div>
+      <div class="warum-item">
+        <div class="warum-num">03</div>
+        <div>
+          <h4>Flexibel ohne Zwang</h4>
+          <p>Einzelprojekt oder laufende Betreuung — wir passen uns Ihren Bedürfnissen an. Kein langer Vertrag notwendig.</p>
+        </div>
+      </div>
+      <div class="warum-item">
+        <div class="warum-num">04</div>
+        <div>
+          <h4>Langjährige Praxiserfahrung</h4>
+          <p>Mehr als 8 Jahre aktive Betreuung produktiver Infrastrukturen — VMware, Veeam, Cisco, Sophos, PRTG.</p>
+        </div>
+      </div>
+    </div>
+    <div class="warum-right">
+      <h3>Unser Versprechen</h3>
+      <div class="check-item"><div class="check-dot">✓</div><span>Kostenloses Erstgespräch ohne Verpflichtung</span></div>
+      <div class="check-item"><div class="check-dot">✓</div><span>Transparente Preisgestaltung ohne versteckte Kosten</span></div>
+      <div class="check-item"><div class="check-dot">✓</div><span>DSGVO-konforme Lösungen für sensible Branchen</span></div>
+      <div class="check-item"><div class="check-dot">✓</div><span>Reaktionszeit innerhalb von 24 Stunden</span></div>
+      <div class="check-item"><div class="check-dot">✓</div><span>Dokumentation aller durchgeführten Arbeiten</span></div>
+      <div class="check-item"><div class="check-dot">✓</div><span>Persönlicher Ansprechpartner — kein Ticket-System</span></div>
+      <div class="check-item"><div class="check-dot">✓</div><span>Flexibel: Einmalprojekt oder monatliche Betreuung</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+<div class="container">
+  <div class="fade-up">
+    <p class="section-label">Kontakt</p>
+    <h2>Lassen Sie uns sprechen</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="kontakt-layout fade-up">
+    <div class="kontakt-info">
+      <h3>Unverbindliches Erstgespräch</h3>
+      <p>
+        Haben Sie aktuell keinen festen IT-Ansprechpartner oder möchten Sie Ihre bestehende
+        Infrastruktur auf Schwachstellen prüfen lassen? Ich freue mich auf Ihre Nachricht.
+      </p>
+      <div class="contact-detail">
+        <div class="cd-icon">📞</div>
+        <div>
+          <div class="cd-label">Telefon</div>
+          <div class="cd-value"><a href="tel:+491605774403">+49 160 5774403</a></div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">✉️</div>
+        <div>
+          <div class="cd-label">E-Mail</div>
+          <div class="cd-value"><a href="mailto:info@rb-engineering-it.de">info@rb-engineering-it.de</a></div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">📍</div>
+        <div>
+          <div class="cd-label">Standort</div>
+          <div class="cd-value">Hannover & Region</div>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="cd-icon">🕐</div>
+        <div>
+          <div class="cd-label">Erreichbarkeit</div>
+          <div class="cd-value">Mo–Fr: 8:00 – 18:00 Uhr</div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Nachricht senden</h3>
+      <form id="contact-form" action="https://formspree.io/f/mjgzqnzr" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vorname</label>
+          <input type="text" name="vorname" placeholder="Max" required>
+        </div>
+        <div class="form-group">
+          <label>Nachname</label>
+          <input type="text" name="nachname" placeholder="Mustermann" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Unternehmen</label>
+        <input type="text" name="unternehmen" placeholder="Mustermann GmbH">
+      </div>
+      <div class="form-group">
+        <label>E-Mail-Adresse</label>
+        <input type="email" name="email" placeholder="max@mustermann.de" required>
+      </div>
+      <div class="form-group">
+        <label>Bereich</label>
+        <select name="bereich">
+          <option value="">— Bitte wählen —</option>
+          <option>Backup & Datensicherung</option>
+          <option>Firewall & IT-Sicherheit</option>
+          <option>Netzwerk & VLAN</option>
+          <option>VMware & Virtualisierung</option>
+          <option>Monitoring</option>
+          <option>CCTV & Kamerasysteme</option>
+          <option>Allgemeine Betreuung</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Ihre Nachricht</label>
+        <textarea name="nachricht" placeholder="Beschreiben Sie kurz Ihre aktuelle Situation oder Ihr Anliegen…"></textarea>
+      </div>
+      <button type="submit" class="form-submit" id="submit-btn">Nachricht senden →</button>
+      </form>
+      <div id="form-success" style="display:none; background:#e8f5e9; color:#2a7a4b; padding:1rem; border-radius:8px; text-align:center; font-weight:500; margin-top:1rem;">
+        ✓ Ihre Nachricht wurde gesendet! Wir melden uns innerhalb von 24 Stunden.
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div><strong>RB Engineering & Consulting GmbH</strong> — IT-Services Hannover</div>
+    <div>© 2025 · <a href="#" style="color:rgba(255,255,255,0.4); text-decoration:none">Impressum</a> · <a href="#" style="color:rgba(255,255,255,0.4); text-decoration:none">Datenschutz</a></div>
+  </div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+  const form = document.getElementById('contact-form');
+  const btn = document.getElementById('submit-btn');
+  const successMsg = document.getElementById('form-success');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    btn.textContent = 'Wird gesendet…';
+    btn.disabled = true;
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (response.ok) {
+        form.style.display = 'none';
+        successMsg.style.display = 'block';
+      } else {
+        btn.textContent = 'Fehler — bitte erneut versuchen';
+        btn.disabled = false;
+      }
+    } catch(err) {
+      btn.textContent = 'Fehler — bitte erneut versuchen';
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
